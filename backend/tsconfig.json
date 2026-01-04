@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["es2021"],
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "types": ["node"],
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}
