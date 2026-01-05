@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
-import { ModeToggle } from "./mode-toggler";
 import { Button } from "./ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
@@ -8,7 +7,7 @@ import { createUser } from "@/api/api";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
-interface clientData {
+export interface clientData {
   fullName: string;
   userName: string;
   email: string;
