@@ -3,13 +3,19 @@ import { createUser, loginUser } from "../services/authService.js";
 
 export const addUser = async (req: Request, res: Response) => {
   try {
-    const { fullName, userName, email, password } = req.body;
+    const { fullName, userName, email, password, type } = req.body;
     if (!fullName || !userName || !email || !password) {
       return res
         .status(400)
         .json({ message: "please fill out the required fields" });
     }
-    const user = await createUser({ fullName, userName, email, password });
+    const user = await createUser({
+      fullName,
+      userName,
+      email,
+      password,
+      type,
+    });
     res.status(201).json({ message: "User created", user });
   } catch (error: any) {
     console.error("Error creating user:", error);

@@ -5,7 +5,7 @@ import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { createUser } from "@/api/api";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export interface clientData {
   fullName: string;
@@ -13,6 +13,7 @@ export interface clientData {
   email: string;
   password: string;
   passwordConfirm: string;
+  type?: "seller" | "shopper";
 }
 
 export function SignupForm({
@@ -27,6 +28,7 @@ export function SignupForm({
     passwordConfirm: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -39,7 +41,10 @@ export function SignupForm({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      await createUser(formData);
+      const res = await createUser(formData);
+      if (res.user) {
+        navigate("/home");
+      }
     } catch (err: any) {
       console.log(err);
       toast(err.message, { type: "error" });
@@ -72,7 +77,7 @@ export function SignupForm({
   }, [formData]);
   return (
     <form
-      className={cn("flex flex-col gap-6", className)}
+      className={cn("flex flex-col", className)}
       onSubmit={handleSubmit}
       {...props}
     >
@@ -121,9 +126,6 @@ export function SignupForm({
           {errors.email && (
             <p className="text-destructive text-xs mt-1">{errors.email}</p>
           )}
-          <FieldDescription>
-            We&apos;ll use this to contact you.
-          </FieldDescription>
         </Field>
 
         <Field>
@@ -173,6 +175,11 @@ export function SignupForm({
             Already have an account?{" "}
             <Link to="/" className="underline">
               Sign in
+            </Link>
+          </FieldDescription>
+          <FieldDescription className="px-6 text-center">
+            <Link to="/sign-up/merchant" className="underline">
+              Create a Merchant account
             </Link>
           </FieldDescription>
         </Field>
