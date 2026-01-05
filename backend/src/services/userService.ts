@@ -1,4 +1,4 @@
-import { AppDataSource } from "../data-source";
+import { AppDataSource } from "../data-source.js";
 import { User, type userType } from "../entity/User.js";
 
 export const createUser = async (data: {

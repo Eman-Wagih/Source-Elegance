@@ -8,8 +8,10 @@
       "path": "./tsconfig.node.json"
     }
   ],
+  "include": ["src"],
   "compilerOptions": {
     "baseUrl": ".",
+    "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"]
     }
