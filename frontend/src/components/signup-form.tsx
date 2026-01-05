@@ -6,6 +6,7 @@ import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { createUser } from "@/api/api";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 interface clientData {
   firstName: string;
@@ -82,11 +83,7 @@ export function SignupForm({
           <p className="text-muted-foreground text-sm text-balance">
             Fill in the form below to create your account
           </p>
-          <div>
-            <ModeToggle />
-          </div>
         </div>
-
         <Field>
           <FieldLabel htmlFor="firstName">First Name</FieldLabel>
           <Input
@@ -175,9 +172,9 @@ export function SignupForm({
         <Field>
           <FieldDescription className="px-6 text-center">
             Already have an account?{" "}
-            <a href="#" className="underline">
+            <Link to="/" className="underline">
               Sign in
-            </a>
+            </Link>
           </FieldDescription>
         </Field>
       </FieldGroup>
