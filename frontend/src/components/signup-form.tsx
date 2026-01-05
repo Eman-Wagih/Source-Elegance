@@ -9,8 +9,8 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 interface clientData {
-  firstName: string;
-  lastName: string;
+  fullName: string;
+  userName: string;
   email: string;
   password: string;
   passwordConfirm: string;
@@ -21,8 +21,8 @@ export function SignupForm({
   ...props
 }: React.ComponentProps<"form">) {
   const [formData, setFormData] = useState<clientData>({
-    firstName: "",
-    lastName: "",
+    fullName: "",
+    userName: "",
     email: "",
     password: "",
     passwordConfirm: "",
@@ -85,26 +85,26 @@ export function SignupForm({
           </p>
         </div>
         <Field>
-          <FieldLabel htmlFor="firstName">First Name</FieldLabel>
+          <FieldLabel htmlFor="fullName">Full Name</FieldLabel>
           <Input
-            id="firstName"
+            id="fullName"
             type="text"
             placeholder="John"
             required
             onChange={handleChange}
-            value={formData.firstName}
+            value={formData.fullName}
           />
         </Field>
 
         <Field>
-          <FieldLabel htmlFor="lastName">Last Name</FieldLabel>
+          <FieldLabel htmlFor="userName">Username</FieldLabel>
           <Input
-            id="lastName"
+            id="userName"
             type="text"
             placeholder="Doe"
             required
             onChange={handleChange}
-            value={formData.lastName}
+            value={formData.userName}
           />
         </Field>
 

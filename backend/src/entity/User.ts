@@ -7,10 +7,10 @@ export class User {
   id!: number;
 
   @Column({ type: "varchar", nullable: false })
-  firstName!: string;
+  fullName!: string;
 
-  @Column({ type: "varchar", nullable: false })
-  lastName!: string;
+  @Column({ type: "varchar", nullable: false, unique: true })
+  userName!: string;
 
   @Column({ type: "varchar", nullable: false, unique: true })
   email!: string;

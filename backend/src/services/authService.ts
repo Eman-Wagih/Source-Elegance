@@ -2,8 +2,8 @@ import { AppDataSource } from "../data-source.js";
 import { User, type userType } from "../entity/User.js";
 
 export const createUser = async (data: {
-  firstName: string;
-  lastName: string;
+  fullName: string;
+  userName: string;
   email: string;
   password: string;
   type?: userType;
@@ -12,5 +12,13 @@ export const createUser = async (data: {
   const user = userRepo.create({ ...data, type: data.type || "shopper" });
   await userRepo.save(user);
 
+  return user;
+};
+
+export const loginUser = async (identifier: string) => {
+  const userRepo = AppDataSource.getRepository(User);
+  const user = await userRepo.findOne({
+    where: [{ userName: identifier }, { email: identifier }],
+  });
   return user;
 };
