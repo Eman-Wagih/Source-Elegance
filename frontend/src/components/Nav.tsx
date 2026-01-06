@@ -3,7 +3,12 @@ import logoDark from "/logoDark.png";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
+import Hamburger from "hamburger-react";
+import { useState } from "react";
+
 function Nav() {
+  const [isOpen, setOpen] = useState(false);
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <nav className="fixed z-10 top-0 inset-x-0 bg-background/50 backdrop-blur-sm border-b dark:border-slate-700/70">
@@ -26,6 +31,10 @@ function Nav() {
             <Button>
               <Link to="/sign-up">Sign up </Link>
             </Button>
+          </div>
+          <div>
+            <Hamburger toggled={isOpen} toggle={setOpen} />
+            {isOpen && <div></div>}
           </div>
         </div>
       </nav>

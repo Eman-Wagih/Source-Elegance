@@ -1,10 +1,11 @@
 import Nav from "@/components/Nav";
+import Layout from "@/components/ShoppingPagesLayout";
 
 function Home() {
   return (
-    <div>
-      <Nav />
-    </div>
+    <Layout>
+      <div></div>
+    </Layout>
   );
 }
 
