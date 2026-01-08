@@ -1,3 +1,4 @@
+import LandingPageMain from "@/components/LandingPageMain";
 import Nav from "@/components/Nav";
 
 function Home() {
@@ -5,6 +6,7 @@ function Home() {
     <>
       {" "}
       <Nav />
+      <LandingPageMain />
     </>
   );
 }

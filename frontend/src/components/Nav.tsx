@@ -10,7 +10,7 @@ function Nav() {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <nav className="fixed z-10 top-0 inset-x-0 bg-background/50 backdrop-blur-sm border-b dark:border-slate-700/70">
+    <nav className="fixed top-0 inset-x-0 bg-background/50 backdrop-blur-sm border-b dark:border-slate-700/70 z-20">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 h-16">
         <img src={logoDark} alt="logo" className="w-20 h-20" />
 
