@@ -18,8 +18,8 @@ export class Product {
   @Column({ type: "varchar" })
   productDescription!: string;
 
-  @Column({ type: "number" })
-  price!: string;
+  @Column({ type: "number", nullable: false })
+  price!: number;
 
   @Column({ type: "array", nullable: false })
   image!: string[];
