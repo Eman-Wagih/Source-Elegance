@@ -1,6 +1,6 @@
 import { type Request, type Response } from "express";
 import { createUser, loginUser } from "../services/authService.js";
-
+import bcrypt  from 'bcrypt'
 export const addUser = async (req: Request, res: Response) => {
   try {
     const { fullName, userName, email, password, type } = req.body;
@@ -39,7 +39,8 @@ export const login = async (req: Request, res: Response) => {
     if (!user) {
       return res.status(400).json({ message: "user not found" });
     }
-    if (password !== user.password) {
+    const isRightPassword = await bcrypt.compare(password,user.password )
+    if (!isRightPassword) {
       return res.status(400).json({ message: "password is incorrect" });
     }
     res.status(200).json({ message: "login succesful", user });

@@ -18,10 +18,10 @@ export class Product {
   @Column({ type: "varchar" })
   productDescription!: string;
 
-  @Column({ type: "number", nullable: false })
+  @Column({ type: "float", nullable: false })
   price!: number;
 
-  @Column({ type: "array", nullable: false })
+  @Column({ type: "varchar", array: true, nullable: false })
   image!: string[];
 
   @Column({ type: "float" })
