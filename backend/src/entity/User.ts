@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Product } from "./Product.js";
 
 export type userType = "shopper" | "seller";
 @Entity()
@@ -20,4 +21,7 @@ export class User {
 
   @Column({ type: "varchar", default: "shopper" })
   type!: userType;
+
+  @OneToMany(() => Product, (product) => product.seller)
+  products!: Product[];
 }

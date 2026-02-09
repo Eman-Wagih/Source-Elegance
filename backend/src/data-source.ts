@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "./entity/User.js";
 import "dotenv/config";
+import { Product } from "./entity/Product.js";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -9,5 +10,5 @@ export const AppDataSource = new DataSource({
   ssl: { rejectUnauthorized: false }, // required for Neon
   synchronize: true, // dev only
   logging: false,
-  entities: [User],
+  entities: [User, Product],
 });
