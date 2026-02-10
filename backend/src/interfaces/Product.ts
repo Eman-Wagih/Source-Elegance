@@ -5,5 +5,5 @@ export interface Product {
   price: number;
   image: string[];
   rating?: number;
-  seller: string;
+  seller: string | number;
 }

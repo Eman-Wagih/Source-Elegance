@@ -10,9 +10,7 @@ export const createUser = async (data: {
 }) => {
   const userRepo = AppDataSource.getRepository(User);
   const user = userRepo.create({ ...data, type: data.type || "shopper" });
-  await userRepo.save(user);
-
-  return user;
+  return await userRepo.save(user);
 };
 
 export const loginUser = async (identifier: string) => {

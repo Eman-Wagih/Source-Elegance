@@ -4,7 +4,7 @@ import type { clientData } from "@/components/signup-form";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const createUser = async (data: clientData) => {
-  const res = await fetch(`${API_URL}/users`, {
+  const res = await fetch(`${API_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

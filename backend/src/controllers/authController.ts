@@ -2,7 +2,7 @@ import { type Request, type Response } from "express";
 import { createUser, loginUser } from "../services/authService.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-export const addUser = async (req: Request, res: Response) => {
+export const signUp = async (req: Request, res: Response) => {
   try {
     const { fullName, userName, email, password, type } = req.body;
     if (!fullName || !userName || !email || !password) {
@@ -17,7 +17,14 @@ export const addUser = async (req: Request, res: Response) => {
       password,
       type,
     });
-    res.status(201).json({ message: "User created", user });
+    const token = jwt.sign(
+      { id: user.id, role: user.type },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: process.env.JWT_EXPIRES_IN || "1h",
+      } as jwt.SignOptions,
+    );
+    res.status(201).json({ message: "User created", user, token });
   } catch (error: any) {
     console.error("Error creating user:", error);
     if (error.code === "23505") {
@@ -45,11 +52,11 @@ export const login = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "password is incorrect" });
     }
     const token = jwt.sign(
-      { userId: user.id, role: user.type },
-      process.env.JWT_SECRET!,
+      { id: user.id, role: user.type },
+      process.env.JWT_SECRET as string,
       {
         expiresIn: process.env.JWT_EXPIRES_IN || "1h",
-      },
+      } as jwt.SignOptions,
     );
     res.status(200).json({ message: "login succesful", user, token });
   } catch (err) {
