@@ -39,6 +39,8 @@ export function LoginForm({
       const response = await login(loginData);
       if (response.user) {
         navigate("/home");
+        localStorage.setItem("token", response.token);
+        toast(`Welcome back, ${response.user.fullName}!`, { type: "success" });
       }
     } catch (err: any) {
       console.log(err);
